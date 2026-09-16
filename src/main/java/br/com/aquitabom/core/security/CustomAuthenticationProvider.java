@@ -1,4 +1,4 @@
-package br.com.aquitabom.auth.security;
+package br.com.aquitabom.core.security;
 
 import java.util.List;
 

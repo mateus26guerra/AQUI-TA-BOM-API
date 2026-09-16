@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.UUID;
 
 import br.com.aquitabom.auth.AuthorityMapper;
-import br.com.aquitabom.auth.security.CustomAuthentication;
-import br.com.aquitabom.auth.security.UsuarioAutenticado;
+import br.com.aquitabom.core.security.CustomAuthentication;
+import br.com.aquitabom.core.security.UsuarioAutenticado;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;

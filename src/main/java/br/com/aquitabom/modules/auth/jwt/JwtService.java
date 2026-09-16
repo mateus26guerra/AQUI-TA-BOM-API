@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.crypto.SecretKey;
 
-import br.com.aquitabom.auth.security.UsuarioAutenticado;
+import br.com.aquitabom.core.security.UsuarioAutenticado;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

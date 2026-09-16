@@ -4,7 +4,7 @@ import br.com.aquitabom.auth.dto.AutenticacaoResponse;
 import br.com.aquitabom.auth.dto.LoginRequest;
 import br.com.aquitabom.auth.dto.RegistroRequest;
 import br.com.aquitabom.auth.dto.UsuarioResponse;
-import br.com.aquitabom.auth.security.UsuarioAutenticado;
+import br.com.aquitabom.core.security.UsuarioAutenticado;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
