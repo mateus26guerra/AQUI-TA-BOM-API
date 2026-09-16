@@ -1,15 +1,16 @@
-package br.com.aquitabom.config;
+package br.com.aquitabom.core.config;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.aquitabom.auth.jwt.JwtAuthenticationFilter;
-import br.com.aquitabom.auth.security.CustomAuthenticationProvider;
+import br.com.aquitabom.modules.auth.jwt.JwtAuthenticationFilter;
+import br.com.aquitabom.core.security.CustomAuthenticationProvider;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,6 +46,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET, "/v1/api/postagens", "/v1/api/postagens/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/v1/api/postagens", "/v1/api/postagens/**").authenticated()
                         .requestMatchers(ROTAS_PUBLICAS).permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex

@@ -1,4 +1,4 @@
-package br.com.aquitabom.role;
+package br.com.aquitabom.modules.role;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -1,20 +1,20 @@
-package br.com.aquitabom.auth;
+package br.com.aquitabom.modules.auth;
 
 import java.util.List;
 import java.util.UUID;
 
-import br.com.aquitabom.auth.dto.AutenticacaoResponse;
-import br.com.aquitabom.auth.dto.LoginRequest;
-import br.com.aquitabom.auth.dto.RegistroRequest;
-import br.com.aquitabom.auth.dto.UsuarioResponse;
-import br.com.aquitabom.auth.jwt.JwtService;
+import br.com.aquitabom.modules.auth.dto.AutenticacaoResponse;
+import br.com.aquitabom.modules.auth.dto.LoginRequest;
+import br.com.aquitabom.modules.auth.dto.RegistroRequest;
+import br.com.aquitabom.modules.auth.dto.UsuarioResponse;
+import br.com.aquitabom.modules.auth.jwt.JwtService;
 import br.com.aquitabom.core.security.CustomAuthentication;
 import br.com.aquitabom.core.security.UsuarioAutenticado;
 import br.com.aquitabom.core.exception.EmailJaCadastradoException;
-import br.com.aquitabom.role.Role;
-import br.com.aquitabom.role.RoleRepository;
-import br.com.aquitabom.usuario.Usuario;
-import br.com.aquitabom.usuario.UsuarioRepository;
+import br.com.aquitabom.modules.role.Role;
+import br.com.aquitabom.modules.role.RoleRepository;
+import br.com.aquitabom.modules.usuario.Usuario;
+import br.com.aquitabom.modules.usuario.UsuarioRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;

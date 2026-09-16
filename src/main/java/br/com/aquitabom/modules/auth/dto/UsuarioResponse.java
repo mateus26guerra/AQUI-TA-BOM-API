@@ -1,4 +1,4 @@
-package br.com.aquitabom.auth.dto;
+package br.com.aquitabom.modules.auth.dto;
 
 import java.util.List;
 import java.util.UUID;

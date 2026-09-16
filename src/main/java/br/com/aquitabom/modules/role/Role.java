@@ -1,4 +1,4 @@
-package br.com.aquitabom.role;
+package br.com.aquitabom.modules.role;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,6 +39,20 @@ public class Role {
     private Set<Acesso> acessos = new HashSet<>();
 
     protected Role() {
+    }
+
+    // CONSTRUTOR PARA O DATASEEDER (Não precisa passar o ID!)
+    public Role(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
+    // Construtor completo (se precisar)
+    public Role(UUID id, String nome, String descricao, Set<Acesso> acessos) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.acessos = acessos != null ? acessos : new HashSet<>();
     }
 
     public UUID getId() {

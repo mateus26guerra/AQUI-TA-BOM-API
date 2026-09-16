@@ -1,4 +1,4 @@
-package br.com.aquitabom.web;
+package br.com.aquitabom.modules.Health;
 
 import java.time.Instant;
 import java.util.Map;

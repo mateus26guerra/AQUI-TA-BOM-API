@@ -1,4 +1,4 @@
-package br.com.aquitabom.auth.jwt;
+package br.com.aquitabom.modules.auth.jwt;
 
 import java.time.Duration;
 

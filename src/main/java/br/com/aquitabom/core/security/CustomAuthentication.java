@@ -1,10 +1,9 @@
-package br.com.aquitabom.auth.security;
+package br.com.aquitabom.core.security;
 
 import java.io.Serial;
 import java.util.Collection;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 public class CustomAuthentication extends AbstractAuthenticationToken {

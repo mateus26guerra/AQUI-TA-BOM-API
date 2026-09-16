@@ -1,4 +1,4 @@
-package br.com.aquitabom.acesso;
+package br.com.aquitabom.modules.acesso;
 
 import java.util.Optional;
 import java.util.UUID;

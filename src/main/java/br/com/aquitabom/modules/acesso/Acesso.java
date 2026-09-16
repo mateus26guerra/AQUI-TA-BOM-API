@@ -1,4 +1,4 @@
-package br.com.aquitabom.acesso;
+package br.com.aquitabom.modules.acesso;
 
 import java.util.UUID;
 
@@ -26,7 +26,11 @@ public class Acesso {
 
     protected Acesso() {
     }
-
+    // CONSTRUTOR PÚBLICO PARA O DATASEEDER (sem ID)
+    public Acesso(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
     public UUID getId() {
         return id;
     }

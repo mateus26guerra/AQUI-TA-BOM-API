@@ -1,4 +1,4 @@
-package br.com.aquitabom.common.exception;
+package br.com.aquitabom.core.exception;
 
 public class EmailJaCadastradoException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package br.com.aquitabom.common.exception;
+package br.com.aquitabom.core.exception;
 
 import java.util.List;
 import java.util.Map;

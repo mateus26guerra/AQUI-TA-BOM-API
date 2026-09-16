@@ -2,9 +2,9 @@ package br.com.aquitabom.core.security;
 
 import java.util.List;
 
-import br.com.aquitabom.auth.AuthorityMapper;
-import br.com.aquitabom.usuario.Usuario;
-import br.com.aquitabom.usuario.UsuarioRepository;
+import br.com.aquitabom.modules.auth.AuthorityMapper;
+import br.com.aquitabom.modules.usuario.Usuario;
+import br.com.aquitabom.modules.usuario.UsuarioRepository;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;

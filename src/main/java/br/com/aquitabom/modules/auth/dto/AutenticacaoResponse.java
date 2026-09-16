@@ -1,4 +1,4 @@
-package br.com.aquitabom.auth.dto;
+package br.com.aquitabom.modules.auth.dto;
 
 public record AutenticacaoResponse(String accessToken, String tokenType, long expiresIn) {
 

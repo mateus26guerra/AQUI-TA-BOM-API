@@ -1,10 +1,10 @@
-package br.com.aquitabom.auth.jwt;
+package br.com.aquitabom.modules.auth.jwt;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import br.com.aquitabom.auth.AuthorityMapper;
+import br.com.aquitabom.modules.auth.AuthorityMapper;
 import br.com.aquitabom.core.security.CustomAuthentication;
 import br.com.aquitabom.core.security.UsuarioAutenticado;
 import io.jsonwebtoken.Claims;

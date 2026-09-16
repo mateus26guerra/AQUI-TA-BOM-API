@@ -1,11 +1,11 @@
-package br.com.aquitabom.auth;
+package br.com.aquitabom.modules.auth;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import br.com.aquitabom.usuario.Usuario;
+import br.com.aquitabom.modules.usuario.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
