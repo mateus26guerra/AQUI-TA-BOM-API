@@ -4,6 +4,7 @@ import br.com.aquitabom.modules.restaurante.Restaurante;
 import java.util.UUID;
 
 public record ResponseRestaurante(
+        UUID id,
         String nome,
         String iniciais,
         String latitude,
@@ -14,6 +15,7 @@ public record ResponseRestaurante(
 ) {
     public ResponseRestaurante(Restaurante restaurante) {
         this(
+                restaurante.getId(),
                 restaurante.getNome(),
                 restaurante.getIniciais(),
                 restaurante.getLatitude(),

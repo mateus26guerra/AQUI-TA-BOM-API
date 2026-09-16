@@ -8,99 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1158b1c-da72-4f6b-8702-207a585c287e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/banner.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/AquiTaBomApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/Storage/R2Config.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/Storage/StorageService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/DataSeeder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/OpenApiConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/SecurityConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/exception/EmailJaCadastradoException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/exception/GlobalExceptionHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/CustomAuthentication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/CustomAuthenticationProvider.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/UsuarioAutenticado.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/Health/HealthController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/acesso/Acesso.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/acesso/AcessoRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthorityMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/api/AuthOpenApi.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/AutenticacaoResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/LoginRequest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/RegistroRequest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/UsuarioResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtAuthenticationFilter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtProperties.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/Postagem.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/Restaurante.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/api/RestauranteSwagger.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/dto/Request/RequestRestaurante.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/dto/Response/ResponseRestaurante.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/role/Role.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/role/RoleRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/usuario/Usuario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/usuario/UsuarioRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/AquiTaBomApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/AquiTaBomApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/Storage/R2Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/Storage/R2Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/Storage/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/Storage/StorageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/config/DataSeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/config/DataSeeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/config/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/config/OpenApiConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/exception/EmailJaCadastradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/exception/EmailJaCadastradoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/security/CustomAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/security/CustomAuthentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/security/CustomAuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/security/CustomAuthenticationProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/security/UsuarioAutenticado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/security/UsuarioAutenticado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/Health/HealthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/Health/HealthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/acesso/Acesso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/acesso/Acesso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/acesso/AcessoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/acesso/AcessoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/AuthorityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/AuthorityMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/api/AuthOpenApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/api/AuthOpenApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/dto/AutenticacaoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/dto/AutenticacaoResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/dto/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/dto/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/dto/RegistroRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/dto/RegistroRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/dto/UsuarioResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/dto/UsuarioResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/jwt/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/jwt/JwtProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/jwt/JwtProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/jwt/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/auth/jwt/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/Postagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/Postagem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/Restaurante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/Restaurante.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/api/RestauranteSwagger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/api/RestauranteSwagger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/dto/Request/RequestRestaurante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/dto/Request/RequestRestaurante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/dto/Response/ResponseRestaurante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/dto/Response/ResponseRestaurante.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/role/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/role/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/role/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/role/RoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/usuario/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/usuario/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/usuario/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/usuario/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/banner.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +111,7 @@
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.AquiTaBomApplication">
+  <component name="RunManager" selected="Application.AquiTaBomApplication">
     <configuration name="AquiTaBomApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <envs>
         <env name="DB_PASSWORD" value="npg_Y5ElCVd1FUZr" />
