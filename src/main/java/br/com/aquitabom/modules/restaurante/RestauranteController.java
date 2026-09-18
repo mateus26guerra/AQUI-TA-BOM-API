@@ -1,6 +1,7 @@
 package br.com.aquitabom.modules.restaurante;
 
 import br.com.aquitabom.modules.restaurante.api.RestauranteSwagger;
+import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestaurante;
 import jakarta.validation.Valid;
@@ -52,9 +53,12 @@ public class RestauranteController implements RestauranteSwagger {
     }
 
     @Override
-    @PatchMapping("/{id}")
-    public ResponseEntity<Void> atualizarRestaurante(@PathVariable UUID id, @RequestBody @Valid Restaurante restaurante) {
-        restauranteService.atualizarRestaurante(id, restaurante);
+    @PatchMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> atualizarRestaurante(
+            @PathVariable UUID id,
+            @ModelAttribute @Valid RequestAtualizarRestaurante dto) {
+
+        restauranteService.atualizarRestaurante(id, dto);
         return ResponseEntity.ok().build();
     }
 }

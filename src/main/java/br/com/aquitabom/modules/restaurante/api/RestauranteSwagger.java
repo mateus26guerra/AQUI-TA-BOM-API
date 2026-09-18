@@ -1,6 +1,7 @@
 package br.com.aquitabom.modules.restaurante.api;
 
 import br.com.aquitabom.modules.restaurante.Restaurante;
+import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestaurante;
 import io.swagger.v3.oas.annotations.Operation;
@@ -57,6 +58,6 @@ public interface RestauranteSwagger {
     ResponseEntity<Void> atualizarRestaurante(
             @Parameter(description = "ID do restaurante", example = "123e4567-e89b-12d3-a456-426614174000")
             @PathVariable UUID id,
-            @RequestBody @Valid Restaurante restaurante
+            @RequestBody @Valid RequestAtualizarRestaurante dto
     );
 }

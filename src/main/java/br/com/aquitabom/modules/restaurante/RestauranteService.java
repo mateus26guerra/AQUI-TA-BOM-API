@@ -1,6 +1,7 @@
 package br.com.aquitabom.modules.restaurante;
 
 import br.com.aquitabom.core.Storage.StorageService;
+import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestaurante;
 import org.springframework.stereotype.Service;
@@ -69,14 +70,25 @@ public class RestauranteService {
     }
 
     @Transactional
-    public void atualizarRestaurante(UUID id, Restaurante restaurante) {
+    public void atualizarRestaurante(UUID id, RequestAtualizarRestaurante dto) {
         Restaurante restauranteAtualizado = buscarRestaurantePorId(id);
-        restauranteAtualizado.setNome(restaurante.getNome());
-        restauranteAtualizado.setEndereco(restaurante.getEndereco());
-        restauranteAtualizado.setTelefone(restaurante.getTelefone());
-        restauranteAtualizado.setLatitude(restaurante.getLatitude());
-        restauranteAtualizado.setLongitude(restaurante.getLongitude());
-        restauranteAtualizado.setDescricao(restaurante.getDescricao());
+
+        if (dto.imagem() != null && !dto.imagem().isEmpty()) {
+            try {
+                String novaUrlImagem = storageService.upload(dto.imagem());
+                restauranteAtualizado.setURLImagem(novaUrlImagem);
+            } catch (Exception e) {
+                throw new RuntimeException("Erro ao atualizar imagem do restaurante", e);
+            }
+        }
+
+        restauranteAtualizado.setNome(dto.nome());
+        restauranteAtualizado.setEndereco(dto.endereco());
+        restauranteAtualizado.setTelefone(dto.telefone());
+        restauranteAtualizado.setLatitude(dto.latitude());
+        restauranteAtualizado.setLongitude(dto.longitude());
+        restauranteAtualizado.setDescricao(dto.descricao());
+
         restauranteRepository.save(restauranteAtualizado);
     }
 }
