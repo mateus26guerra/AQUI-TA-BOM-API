@@ -38,13 +38,15 @@ public class PostagemController {
             @RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam("restauranteId") UUID restauranteId,
             @RequestParam("imagem") MultipartFile imagem,
+            @RequestParam("nota") Integer nota,
+            @RequestParam(value = "status", required = false) StatusPostagem status,
             @AuthenticationPrincipal UsuarioAutenticado principal
     ) {
     if (principal == null) {
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado");
     }
 
-    ResponsePostagem postagem = postagemService.criarPostagem(titulo, descricao, restauranteId, imagem, principal);
+    ResponsePostagem postagem = postagemService.criarPostagem(titulo, descricao, restauranteId, imagem, principal, nota, status);
     return ResponseEntity.status(HttpStatus.CREATED).body(postagem);
 }
 

@@ -35,9 +35,14 @@ public class PostagemService {
     }
 
     @Transactional
-    public ResponsePostagem criarPostagem(String titulo, String descricao, UUID restauranteId, MultipartFile imagem, UsuarioAutenticado principal) {
+    public ResponsePostagem criarPostagem(String titulo, String descricao, UUID restauranteId, MultipartFile imagem, UsuarioAutenticado principal,
+                                      Integer nota, StatusPostagem status) {
         if (principal == null) {
             throw new IllegalStateException("Usuário autenticado não informado");
+        }
+
+        if (nota == null || nota < 1 || nota > 5) {
+            throw new IllegalArgumentException("A nota deve estar entre 1 e 5");
         }
 
         Usuario usuario = usuarioRepository.findById(principal.id())
@@ -53,7 +58,7 @@ public class PostagemService {
             throw new RuntimeException("Erro ao enviar imagem para o Cloudflare R2", e);
         }
 
-        Postagem postagem = new Postagem(titulo, descricao, urlImagem, usuario, restaurante);
+        Postagem postagem = new Postagem(titulo, descricao, urlImagem, usuario, restaurante, nota, status);
         postagemRepository.save(postagem);
 
         return new ResponsePostagem(postagem);

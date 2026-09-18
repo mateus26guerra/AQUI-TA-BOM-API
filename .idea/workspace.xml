@@ -8,13 +8,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1158b1c-da72-4f6b-8702-207a585c287e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/Postagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/Postagem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/banner.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/AquiTaBomApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/Storage/R2Config.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/Storage/StorageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/DataSeeder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/OpenApiConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/exception/EmailJaCadastradoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/exception/GlobalExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/CustomAuthentication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/CustomAuthenticationProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/UsuarioAutenticado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/Health/HealthController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/acesso/Acesso.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/acesso/AcessoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthorityMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/api/AuthOpenApi.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/AutenticacaoResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/LoginRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/RegistroRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/UsuarioResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtAuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/Postagem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/Restaurante.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/api/RestauranteSwagger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/dto/Request/RequestRestaurante.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/dto/Response/ResponseRestaurante.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/role/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/role/RoleRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/usuario/Usuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/usuario/UsuarioRepository.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +82,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feat/authentication" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,43 +130,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AquiTaBomApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.aqui-ta-bom-backend [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.aqui-ta-bom-backend [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.aqui-ta-bom-backend [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.aqui-ta-bom-backend [validate].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AquiTaBomApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/run/media/mateus/Arquivo/DEV/Faculdade/aqui-ta-bom-backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AquiTaBomApplication.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "Maven.aqui-ta-bom-backend [clean].executor": "Run",
+    "Maven.aqui-ta-bom-backend [install].executor": "Run",
+    "Maven.aqui-ta-bom-backend [test].executor": "Run",
+    "Maven.aqui-ta-bom-backend [validate].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.AquiTaBomApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "dino",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/luucasdinoo/Workstation/ws-intellij/AQUI-TA-BOM-API",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.AquiTaBomApplication">
     <configuration name="AquiTaBomApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <envs>
         <env name="DB_PASSWORD" value="npg_Y5ElCVd1FUZr" />
-        <env name="DB_URL" value="jdbc:postgresql://ep-green-base-aco4v13d-pooler.sa-east-1.aws.neon.tech/neondb?sslmode\=require&amp;channel_binding\=require" />
+        <env name="DB_URL" value="jdbc:postgresql://ep-green-base-aco4v13d-pooler.sa-east-1.aws.neon.tech/neondb?sslmode\\=require&amp;channel_binding\\=require" />
         <env name="DB_USERNAME" value="neondb_owner" />
-        <env name="JWT_SECRET" value="IWHnDLz0/BLlbDc58t1mQ4NAAMiqubvHi5GuNwXS9PQ=" />
+        <env name="JWT_SECRET" value="IWHnDLz0/BLlbDc58t1mQ4NAAMiqubvHi5GuNwXS9PQ\=" />
         <env name="R2_ACCESS_KEY" value="a3e59f85cf3029c98e4f16c13e645fb8" />
         <env name="R2_BUCKET" value="asclepio-produtos" />
         <env name="R2_ENDPOINT" value="https://136199472ba313d7b7e3d659b3973193.r2.cloudflarestorage.com" />
