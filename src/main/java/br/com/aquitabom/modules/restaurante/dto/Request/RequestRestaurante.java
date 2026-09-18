@@ -1,6 +1,6 @@
 package br.com.aquitabom.modules.restaurante.dto.Request;
 
-import br.com.aquitabom.modules.restaurante.Restaurante;
+import org.springframework.web.multipart.MultipartFile;
 
 public record RequestRestaurante(
         String nome,
@@ -9,17 +9,7 @@ public record RequestRestaurante(
         String longitude,
         String endereco,
         String descricao,
-        String telefone
+        String telefone,
+        MultipartFile imagem
 ) {
-    public RequestRestaurante(Restaurante restaurante) {
-        this(
-                restaurante.getNome(),
-                restaurante.getIniciais(),
-                restaurante.getLatitude(),
-                restaurante.getLongitude(),
-                restaurante.getEndereco(),
-                restaurante.getDescricao(),
-                restaurante.getTelefone()
-        );
-    }
 }

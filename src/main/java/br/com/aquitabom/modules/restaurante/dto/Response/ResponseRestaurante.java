@@ -11,7 +11,8 @@ public record ResponseRestaurante(
         String longitude,
         String endereco,
         String descricao,
-        String telefone
+        String telefone,
+        String urlImagem
 ) {
     public ResponseRestaurante(Restaurante restaurante) {
         this(
@@ -22,7 +23,8 @@ public record ResponseRestaurante(
                 restaurante.getLongitude(),
                 restaurante.getEndereco(),
                 restaurante.getDescricao(),
-                restaurante.getTelefone()
+                restaurante.getTelefone(),
+                restaurante.getURLImagem()
         );
     }
 }
