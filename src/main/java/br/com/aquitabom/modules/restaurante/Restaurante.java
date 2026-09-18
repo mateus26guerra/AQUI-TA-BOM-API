@@ -23,11 +23,12 @@ public class Restaurante {
     private String endereco;
     private String descricao;
     private String telefone;
+    private String URLImagem;
 
     public Restaurante() {
     }
 
-    public Restaurante(UUID id, String nome, String iniciais, String latitude, String longitude, String endereco, String descricao, String telefone) {
+    public Restaurante(UUID id, String nome, String iniciais, String latitude, String longitude, String endereco, String descricao, String telefone, String URLImagem) {
         this.id = id;
         this.nome = nome;
         this.iniciais = iniciais;
@@ -36,6 +37,7 @@ public class Restaurante {
         this.endereco = endereco;
         this.descricao = descricao;
         this.telefone = telefone;
+        this.URLImagem = URLImagem;
     }
 
     public UUID getId() {
@@ -100,5 +102,13 @@ public class Restaurante {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getURLImagem() {
+        return URLImagem;
+    }
+
+    public void setURLImagem(String URLImagem) {
+        this.URLImagem = URLImagem;
     }
 }
