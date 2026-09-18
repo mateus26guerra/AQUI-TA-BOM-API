@@ -66,4 +66,16 @@ public class PostagemService {
                 .map(ResponsePostagem::new)
                 .toList();
     }
+
+    @Transactional(readOnly = true)
+    public List<ResponsePostagem> listarMinhasPostagens(UsuarioAutenticado principal) {
+        if (principal == null) {
+            throw new IllegalStateException("Usuário autenticado não informado");
+        }
+
+        return postagemRepository.findAllByUsuarioIdOrderByDataCriacaoDesc(principal.id())
+                .stream()
+                .map(ResponsePostagem::new)
+                .toList();
+    }
 }

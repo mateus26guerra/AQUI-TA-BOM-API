@@ -52,4 +52,17 @@ public class PostagemController {
     public ResponseEntity<List<ResponsePostagem>> listar() {
         return ResponseEntity.ok(postagemService.listarTodas());
     }
+
+    @GetMapping("/minhas")
+    @SecurityRequirement(name = "bearer-jwt")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<List<ResponsePostagem>> listarMinhasPostagens(
+            @AuthenticationPrincipal UsuarioAutenticado principal
+    ) {
+        if (principal == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado");
+        }
+
+        return ResponseEntity.ok(postagemService.listarMinhasPostagens(principal));
+    }
 }
