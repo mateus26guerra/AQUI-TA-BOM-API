@@ -30,6 +30,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(problema);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ProblemDetail> handleArgumentoInvalido(IllegalArgumentException ex) {
+        ProblemDetail problema = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+        problema.setTitle("Requisição inválida");
+        return ResponseEntity.badRequest().body(problema);
+    }
+
     @ExceptionHandler(EmailJaCadastradoException.class)
     public ResponseEntity<ProblemDetail> handleEmailDuplicado(EmailJaCadastradoException ex) {
         ProblemDetail problema = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
