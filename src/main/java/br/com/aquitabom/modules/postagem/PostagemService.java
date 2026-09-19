@@ -132,5 +132,5 @@ public class PostagemService {
                 .map(Postagem::getLikes)
                 .orElse(0L);
         return new ResponseCurtida(postagemId, likes, curtido);
-    }11111
+    }
 }
