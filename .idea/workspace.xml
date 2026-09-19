@@ -7,58 +7,13 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1158b1c-da72-4f6b-8702-207a585c287e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="e1158b1c-da72-4f6b-8702-207a585c287e" name="Changes" comment="feat: adicionando like, status e nota para postagem">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/core/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/Postagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/Postagem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/banner.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/AquiTaBomApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/Storage/R2Config.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/Storage/StorageService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/DataSeeder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/OpenApiConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/config/SecurityConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/exception/EmailJaCadastradoException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/exception/GlobalExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/CustomAuthentication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/CustomAuthenticationProvider.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/core/security/UsuarioAutenticado.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/Health/HealthController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/acesso/Acesso.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/acesso/AcessoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/AuthorityMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/api/AuthOpenApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/AutenticacaoResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/LoginRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/RegistroRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/dto/UsuarioResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtAuthenticationFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtProperties.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/auth/jwt/JwtService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/Postagem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/PostagemService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/postagem/cto/ResponsePostagem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/Restaurante.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/RestauranteService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/api/RestauranteSwagger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/dto/Request/RequestRestaurante.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/restaurante/dto/Response/ResponseRestaurante.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/role/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/role/RoleRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/usuario/Usuario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/aquitabom/modules/usuario/UsuarioRepository.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,5 +173,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: adicionando like, status e nota para postagem" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: adicionando like, status e nota para postagem" />
   </component>
 </project>

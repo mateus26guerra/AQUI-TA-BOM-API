@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/v1/api/postagens", "/v1/api/postagens/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/api/postagens", "/v1/api/postagens/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/v1/api/postagens/**").authenticated()
                         .requestMatchers(ROTAS_PUBLICAS).permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex

@@ -2,6 +2,7 @@ package br.com.aquitabom.modules.postagem;
 
 import br.com.aquitabom.core.security.UsuarioAutenticado;
 
+import br.com.aquitabom.modules.postagem.cto.ResponseCurtida;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
@@ -10,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,5 +69,33 @@ public class PostagemController {
         }
 
         return ResponseEntity.ok(postagemService.listarMinhasPostagens(principal));
+    }
+
+    @PostMapping("/{id}/like")
+    @SecurityRequirement(name = "bearer-jwt")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ResponseCurtida> curtir(
+            @PathVariable("id") UUID id,
+            @AuthenticationPrincipal UsuarioAutenticado principal
+    ) {
+        if (principal == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado");
+        }
+
+        return ResponseEntity.ok(postagemService.curtir(id, principal));
+    }
+
+    @DeleteMapping("/{id}/like")
+    @SecurityRequirement(name = "bearer-jwt")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ResponseCurtida> descurtir(
+            @PathVariable("id") UUID id,
+            @AuthenticationPrincipal UsuarioAutenticado principal
+    ) {
+        if (principal == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado");
+        }
+
+        return ResponseEntity.ok(postagemService.descurtir(id, principal));
     }
 }

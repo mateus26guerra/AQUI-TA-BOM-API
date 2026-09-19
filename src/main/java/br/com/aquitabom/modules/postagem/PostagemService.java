@@ -4,6 +4,9 @@ import br.com.aquitabom.core.Storage.StorageService;
 import br.com.aquitabom.core.security.UsuarioAutenticado;
 
 
+import br.com.aquitabom.modules.curtida.Curtida;
+import br.com.aquitabom.modules.curtida.CurtidaRepository;
+import br.com.aquitabom.modules.postagem.cto.ResponseCurtida;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import br.com.aquitabom.modules.restaurante.Restaurante;
 import br.com.aquitabom.modules.restaurante.RestauranteRepository;
@@ -22,15 +25,18 @@ public class PostagemService {
     private final PostagemRepository postagemRepository;
     private final UsuarioRepository usuarioRepository;
     private final RestauranteRepository restauranteRepository;
+    private final CurtidaRepository curtidaRepository;
     private final StorageService storageService;
 
     public PostagemService(PostagemRepository postagemRepository,
                            UsuarioRepository usuarioRepository,
                            RestauranteRepository restauranteRepository,
+                           CurtidaRepository curtidaRepository,
                            StorageService storageService) {
         this.postagemRepository = postagemRepository;
         this.usuarioRepository = usuarioRepository;
         this.restauranteRepository = restauranteRepository;
+        this.curtidaRepository = curtidaRepository;
         this.storageService = storageService;
     }
 
@@ -83,4 +89,48 @@ public class PostagemService {
                 .map(ResponsePostagem::new)
                 .toList();
     }
+
+    @Transactional
+    public ResponseCurtida curtir(UUID postagemId, UsuarioAutenticado principal) {
+        if (principal == null) {
+            throw new IllegalStateException("Usuário autenticado não informado");
+        }
+
+        Postagem postagem = postagemRepository.findById(postagemId)
+                .orElseThrow(() -> new IllegalArgumentException("Postagem não encontrada"));
+
+        if (!curtidaRepository.existsByPostagemIdAndUsuarioId(postagemId, principal.id())) {
+            Usuario usuario = usuarioRepository.findById(principal.id())
+                    .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+
+            curtidaRepository.save(new Curtida(postagem, usuario));
+            postagemRepository.incrementarLikes(postagemId);
+        }
+
+        return montarRespostaCurtida(postagemId, true);
+    }
+
+    @Transactional
+    public ResponseCurtida descurtir(UUID postagemId, UsuarioAutenticado principal) {
+        if (principal == null) {
+            throw new IllegalStateException("Usuário autenticado não informado");
+        }
+
+        if (!postagemRepository.existsById(postagemId)) {
+            throw new IllegalArgumentException("Postagem não encontrada");
+        }
+
+        if (curtidaRepository.deleteByPostagemIdAndUsuarioId(postagemId, principal.id()) > 0) {
+            postagemRepository.decrementarLikes(postagemId);
+        }
+
+        return montarRespostaCurtida(postagemId, false);
+    }
+
+    private ResponseCurtida montarRespostaCurtida(UUID postagemId, boolean curtido) {
+        Long likes = postagemRepository.findById(postagemId)
+                .map(Postagem::getLikes)
+                .orElse(0L);
+        return new ResponseCurtida(postagemId, likes, curtido);
+    }11111
 }
