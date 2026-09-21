@@ -5,6 +5,7 @@ import br.com.aquitabom.modules.restaurante.api.RestauranteSwagger;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestaurante;
+import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestauranteMapa;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +36,14 @@ public class RestauranteController implements RestauranteSwagger {
 
     public RestauranteController(RestauranteService restauranteService) {
         this.restauranteService = restauranteService;
+    }
+
+    @GetMapping("/mapa")
+    public ResponseEntity<List<ResponseRestauranteMapa>> listarRestaurantesMapa() {
+
+        return ResponseEntity.ok(
+                restauranteService.listarRestaurantesMapa()
+        );
     }
 
     @Override
