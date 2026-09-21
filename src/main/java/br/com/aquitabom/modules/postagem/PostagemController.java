@@ -33,6 +33,26 @@ public class PostagemController {
         this.postagemService = postagemService;
     }
 
+
+    @DeleteMapping("/{id}")
+    @SecurityRequirement(name = "bearer-jwt")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Void> deletar(
+            @PathVariable("id") UUID id,
+            @AuthenticationPrincipal UsuarioAutenticado principal
+    ) {
+        if (principal == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED,
+                    "Usuário não autenticado"
+            );
+        }
+
+        postagemService.deletarPostagem(id, principal);
+
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @SecurityRequirement(name = "bearer-jwt")
     @PreAuthorize("isAuthenticated()")

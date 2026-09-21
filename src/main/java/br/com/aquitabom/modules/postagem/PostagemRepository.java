@@ -40,4 +40,6 @@ public interface PostagemRepository extends JpaRepository<Postagem, UUID> {
 
     @EntityGraph(attributePaths = {"usuario", "restaurante"})
     List<Postagem> findByUsuarioIdOrderByDataCriacaoDesc(UUID usuarioId);
+
+
 }

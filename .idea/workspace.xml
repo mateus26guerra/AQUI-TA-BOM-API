@@ -8,14 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1158b1c-da72-4f6b-8702-207a585c287e" name="Changes" comment="feat: adicionando like, status e nota para postagem">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/curtida/CurtidaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/curtida/CurtidaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/RestauranteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/api/RestauranteSwagger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/restaurante/api/RestauranteSwagger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
