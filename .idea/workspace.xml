@@ -8,14 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1158b1c-da72-4f6b-8702-207a585c287e" name="Changes" comment="feat: adicionando like, status e nota para postagem">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/comentario/Comentario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/comentario/ComentarioController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/comentario/ComentarioRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/comentario/ComentarioService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/comentario/dto/RequestComentario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/comentario/dto/ResponseComentario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/avaliacaorestaurante/AvaliacaoRestaurante.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/avaliacaorestaurante/AvaliacaoRestauranteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/avaliacaorestaurante/AvaliacaoRestauranteRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/avaliacaorestaurante/AvaliacaoRestauranteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/avaliacaorestaurante/dto/RequestAvaliacaoRestaurante.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/avaliacaorestaurante/dto/ResponseAvaliacaoRestaurante.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
