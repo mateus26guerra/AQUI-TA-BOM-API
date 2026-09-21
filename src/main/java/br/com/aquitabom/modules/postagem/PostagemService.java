@@ -40,6 +40,28 @@ public class PostagemService {
         this.storageService = storageService;
     }
 
+
+    @Transactional
+    public void deletarPostagem(UUID postagemId, UsuarioAutenticado principal) {
+
+        if (principal == null) {
+            throw new IllegalStateException("Usuário autenticado não informado");
+        }
+
+        Postagem postagem = postagemRepository.findById(postagemId)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Postagem não encontrada"));
+
+        if (!postagem.getUsuario().getId().equals(principal.id())) {
+            throw new org.springframework.security.access.AccessDeniedException(
+                    "Você não pode excluir uma postagem de outro usuário"
+            );
+        }
+
+        curtidaRepository.deleteByPostagemId(postagemId);
+        postagemRepository.delete(postagem);
+    }
+
     @Transactional(readOnly = true)
     public List<ResponsePostagem> listarPostagensDoUsuario(UUID usuarioId) {
 
