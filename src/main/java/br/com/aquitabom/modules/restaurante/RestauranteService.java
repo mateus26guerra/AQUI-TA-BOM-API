@@ -1,19 +1,27 @@
 package br.com.aquitabom.modules.restaurante;
 
 import br.com.aquitabom.core.Storage.StorageService;
+import br.com.aquitabom.modules.LotacaoRestaurante.LotacaoRestaurante;
+import br.com.aquitabom.modules.LotacaoRestaurante.LotacaoRestauranteRepository;
+import br.com.aquitabom.modules.avaliacaolotacao.AvaliacaoLotacaoService;
+import br.com.aquitabom.modules.avaliacaolotacao.StatusLotacao;
+import br.com.aquitabom.modules.avaliacaolotacao.dto.ResponseLotacao;
 import br.com.aquitabom.modules.postagem.PostagemRepository;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestaurante;
+import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestauranteMapa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class RestauranteService {
@@ -21,13 +29,60 @@ public class RestauranteService {
     private final RestauranteRepository restauranteRepository;
     private final StorageService storageService;
     private final PostagemRepository postagemRepository;
+    private final LotacaoRestauranteRepository lotacaoRestauranteRepository;
 
-    public RestauranteService(RestauranteRepository restauranteRepository, StorageService storageService, PostagemRepository postagemRepository) {
+    public RestauranteService(
+            RestauranteRepository restauranteRepository,
+            StorageService storageService,
+            PostagemRepository postagemRepository,
+            LotacaoRestauranteRepository lotacaoRestauranteRepository) {
         this.restauranteRepository = restauranteRepository;
         this.storageService = storageService;
         this.postagemRepository = postagemRepository;
+        this.lotacaoRestauranteRepository = lotacaoRestauranteRepository;
     }
 
+    @Transactional(readOnly = true)
+    public List<ResponseRestauranteMapa> listarRestaurantesMapa() {
+
+        var restaurantes = restauranteRepository.findAll();
+
+        var lotacoes = lotacaoRestauranteRepository.findAll()
+                .stream()
+                .collect(Collectors.toMap(
+                        lotacao -> lotacao.getRestaurante().getId(),
+                        lotacao -> lotacao
+                ));
+
+        OffsetDateTime limite = OffsetDateTime.now().minusMinutes(30);
+
+        return restaurantes.stream()
+                .map(restaurante -> {
+
+                    LotacaoRestaurante lotacao =
+                            lotacoes.get(restaurante.getId());
+
+                    StatusLotacao statusLotacao = null;
+
+                    if (lotacao != null &&
+                            lotacao.getAtualizadoEm().isAfter(limite)) {
+
+                        statusLotacao = lotacao.getStatus();
+                    }
+
+                    return new ResponseRestauranteMapa(
+                            restaurante.getId(),
+                            restaurante.getNome(),
+                            restaurante.getIniciais(),
+                            restaurante.getLatitude(),
+                            restaurante.getLongitude(),
+                            restaurante.getEndereco(),
+                            restaurante.getURLImagem(),
+                            statusLotacao
+                    );
+                })
+                .toList();
+    }
     @Transactional(readOnly = true)
     public Page<ResponsePostagem> listarPostagensDoRestaurante(UUID restauranteId, Pageable pageable) {
         if (!restauranteRepository.existsById(restauranteId)) {
