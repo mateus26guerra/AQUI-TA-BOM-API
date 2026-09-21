@@ -4,6 +4,7 @@ import br.com.aquitabom.core.Storage.StorageService;
 import br.com.aquitabom.core.security.UsuarioAutenticado;
 
 
+import br.com.aquitabom.modules.comentario.ComentarioRepository;
 import br.com.aquitabom.modules.curtida.Curtida;
 import br.com.aquitabom.modules.curtida.CurtidaRepository;
 import br.com.aquitabom.modules.postagem.cto.ResponseCurtida;
@@ -26,17 +27,20 @@ public class PostagemService {
     private final UsuarioRepository usuarioRepository;
     private final RestauranteRepository restauranteRepository;
     private final CurtidaRepository curtidaRepository;
+    private final ComentarioRepository comentarioRepository;
     private final StorageService storageService;
 
     public PostagemService(PostagemRepository postagemRepository,
                            UsuarioRepository usuarioRepository,
                            RestauranteRepository restauranteRepository,
                            CurtidaRepository curtidaRepository,
+                           ComentarioRepository comentarioRepository,
                            StorageService storageService) {
         this.postagemRepository = postagemRepository;
         this.usuarioRepository = usuarioRepository;
         this.restauranteRepository = restauranteRepository;
         this.curtidaRepository = curtidaRepository;
+        this.comentarioRepository = comentarioRepository;
         this.storageService = storageService;
     }
 
@@ -58,6 +62,7 @@ public class PostagemService {
             );
         }
 
+        comentarioRepository.deleteByPostagemId(postagemId);
         curtidaRepository.deleteByPostagemId(postagemId);
         postagemRepository.delete(postagem);
     }
