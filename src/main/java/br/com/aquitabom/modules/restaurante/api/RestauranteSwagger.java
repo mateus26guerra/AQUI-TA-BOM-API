@@ -1,5 +1,6 @@
 package br.com.aquitabom.modules.restaurante.api;
 
+import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import br.com.aquitabom.modules.restaurante.Restaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestRestaurante;
@@ -11,6 +12,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,4 +65,43 @@ public interface RestauranteSwagger {
             @PathVariable UUID id,
             @RequestBody @Valid RequestAtualizarRestaurante dto
     );
+
+    @Operation(
+            summary = "Listar postagens de um restaurante",
+            description = "Retorna as postagens associadas ao restaurante informado, com suporte à paginação."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Postagens retornadas com sucesso"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Restaurante não encontrado"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Não autorizado"
+            )
+    })
+    ResponseEntity<Page<ResponsePostagem>> listarPostagensDoRestaurante(
+            @Parameter(
+                    description = "ID do restaurante",
+                    example = "123e4567-e89b-12d3-a456-426614174000",
+                    required = true
+            )
+            @PathVariable UUID id,
+
+            @Parameter(
+                    description = "Configuração da paginação. Exemplo: ?page=0&size=10"
+            )
+            @PageableDefault(
+                    size = 10,
+                    sort = "dataCriacao",
+                    direction = Sort.Direction.DESC
+            )
+            Pageable pageable
+    );
+
+
 }

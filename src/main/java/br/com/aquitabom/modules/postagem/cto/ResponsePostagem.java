@@ -10,6 +10,7 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record ResponsePostagem(
         UUID id,
+        UUID usuarioId,
         String titulo,
         String descricao,
         String imagemUrl,
@@ -20,18 +21,20 @@ public record ResponsePostagem(
         String nomeRestaurante,
         OffsetDateTime dataCriacao
 ) {
+
     public ResponsePostagem(Postagem p) {
         this(
-            p.getId(),
-            p.getTitulo(),
-            p.getDescricao(),
-            p.getImagemUrl(),
-            p.getLikes(),
-            p.getNota(),
-            p.getStatus(),
-            p.getUsuario().getNome(),
-            p.getRestaurante().getNome(),
-            p.getDataCriacao()
+                p.getId(),
+                p.getUsuario().getId(),
+                p.getTitulo(),
+                p.getDescricao(),
+                p.getImagemUrl(),
+                p.getLikes(),
+                p.getNota(),
+                p.getStatus(),
+                p.getUsuario().getNome(),
+                p.getRestaurante().getNome(),
+                p.getDataCriacao()
         );
     }
 }
