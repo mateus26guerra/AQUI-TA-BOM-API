@@ -1,13 +1,19 @@
 package br.com.aquitabom.modules.restaurante;
 
+import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import br.com.aquitabom.modules.restaurante.api.RestauranteSwagger;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestaurante;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -54,11 +60,24 @@ public class RestauranteController implements RestauranteSwagger {
 
     @Override
     @PatchMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void> atualizarRestaurante(
-            @PathVariable UUID id,
-            @ModelAttribute @Valid RequestAtualizarRestaurante dto) {
+    public ResponseEntity<Void> atualizarRestaurante(@PathVariable UUID id, @ModelAttribute @Valid RequestAtualizarRestaurante dto) {
 
         restauranteService.atualizarRestaurante(id, dto);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}/postagens")
+    public ResponseEntity<Page<ResponsePostagem>> listarPostagensDoRestaurante(
+            @PathVariable UUID id,
+            @PageableDefault(
+                    size = 10,
+                    sort = "dataCriacao",
+                    direction = Sort.Direction.DESC
+            )
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(
+                restauranteService.listarPostagensDoRestaurante(id, pageable)
+        );
     }
 }

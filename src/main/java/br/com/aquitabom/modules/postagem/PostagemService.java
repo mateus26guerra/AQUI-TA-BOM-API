@@ -40,6 +40,20 @@ public class PostagemService {
         this.storageService = storageService;
     }
 
+    @Transactional(readOnly = true)
+    public List<ResponsePostagem> listarPostagensDoUsuario(UUID usuarioId) {
+
+        if (!usuarioRepository.existsById(usuarioId)) {
+            throw new IllegalArgumentException("Usuário não encontrado");
+        }
+
+        return postagemRepository
+                .findByUsuarioIdOrderByDataCriacaoDesc(usuarioId)
+                .stream()
+                .map(ResponsePostagem::new)
+                .toList();
+    }
+
     @Transactional
     public ResponsePostagem criarPostagem(String titulo, String descricao, UUID restauranteId, MultipartFile imagem, UsuarioAutenticado principal,
                                       Integer nota, StatusPostagem status) {

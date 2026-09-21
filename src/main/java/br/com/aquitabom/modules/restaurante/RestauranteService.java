@@ -1,9 +1,13 @@
 package br.com.aquitabom.modules.restaurante;
 
 import br.com.aquitabom.core.Storage.StorageService;
+import br.com.aquitabom.modules.postagem.PostagemRepository;
+import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestRestaurante;
 import br.com.aquitabom.modules.restaurante.dto.Response.ResponseRestaurante;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,10 +20,21 @@ public class RestauranteService {
 
     private final RestauranteRepository restauranteRepository;
     private final StorageService storageService;
+    private final PostagemRepository postagemRepository;
 
-    public RestauranteService(RestauranteRepository restauranteRepository, StorageService storageService) {
+    public RestauranteService(RestauranteRepository restauranteRepository, StorageService storageService, PostagemRepository postagemRepository) {
         this.restauranteRepository = restauranteRepository;
         this.storageService = storageService;
+        this.postagemRepository = postagemRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<ResponsePostagem> listarPostagensDoRestaurante(UUID restauranteId, Pageable pageable) {
+        if (!restauranteRepository.existsById(restauranteId)) {
+            throw new RuntimeException("Restaurante não encontrado");
+        }
+
+        return postagemRepository.findByRestauranteId(restauranteId, pageable).map(ResponsePostagem::new);
     }
 
     @Transactional
@@ -52,10 +67,7 @@ public class RestauranteService {
 
     @Transactional(readOnly = true)
     public List<ResponseRestaurante> listarRestaurantes() {
-        return restauranteRepository.findAll()
-                .stream()
-                .map(ResponseRestaurante::new)
-                .toList();
+        return restauranteRepository.findAll().stream().map(ResponseRestaurante::new).toList();
     }
 
     @Transactional
@@ -65,8 +77,7 @@ public class RestauranteService {
 
     @Transactional(readOnly = true)
     public Restaurante buscarRestaurantePorId(UUID id) {
-        return restauranteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Restaurante não encontrado com o ID: " + id));
+        return restauranteRepository.findById(id).orElseThrow(() -> new RuntimeException("Restaurante não encontrado com o ID: " + id));
     }
 
     @Transactional

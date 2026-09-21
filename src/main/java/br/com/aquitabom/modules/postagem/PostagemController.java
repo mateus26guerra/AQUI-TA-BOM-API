@@ -98,4 +98,13 @@ public class PostagemController {
 
         return ResponseEntity.ok(postagemService.descurtir(id, principal));
     }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<ResponsePostagem>> listarPostagensDoUsuario(
+            @PathVariable UUID usuarioId
+    ) {
+        return ResponseEntity.ok(
+                postagemService.listarPostagensDoUsuario(usuarioId)
+        );
+    }
 }

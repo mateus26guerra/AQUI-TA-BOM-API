@@ -1,5 +1,7 @@
 package br.com.aquitabom.modules.postagem;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -26,4 +28,16 @@ public interface PostagemRepository extends JpaRepository<Postagem, UUID> {
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query("UPDATE Postagem p SET p.likes = p.likes - 1 WHERE p.id = :id AND p.likes > 0")
     void decrementarLikes(@Param("id") UUID id);
+
+    @Query("""
+                SELECT p
+                FROM Postagem p
+                WHERE p.restaurante.id = :restauranteId
+                ORDER BY p.dataCriacao DESC
+            """)
+    Page<Postagem> findByRestauranteId(@Param("restauranteId") UUID restauranteId, Pageable pageable);
+
+
+    @EntityGraph(attributePaths = {"usuario", "restaurante"})
+    List<Postagem> findByUsuarioIdOrderByDataCriacaoDesc(UUID usuarioId);
 }
