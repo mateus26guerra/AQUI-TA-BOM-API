@@ -6,6 +6,9 @@ import br.com.aquitabom.modules.LotacaoRestaurante.LotacaoRestauranteRepository;
 import br.com.aquitabom.modules.avaliacaolotacao.AvaliacaoLotacaoService;
 import br.com.aquitabom.modules.avaliacaolotacao.StatusLotacao;
 import br.com.aquitabom.modules.avaliacaolotacao.dto.ResponseLotacao;
+import br.com.aquitabom.modules.comentario.ComentarioRepository;
+import br.com.aquitabom.modules.curtida.CurtidaRepository;
+import br.com.aquitabom.modules.postagem.Postagem;
 import br.com.aquitabom.modules.postagem.PostagemRepository;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
@@ -30,18 +33,24 @@ public class RestauranteService {
     private final StorageService storageService;
     private final PostagemRepository postagemRepository;
     private final LotacaoRestauranteRepository lotacaoRestauranteRepository;
+    private final ComentarioRepository comentarioRepository;
+    private final CurtidaRepository curtidaRepository;
 
     public RestauranteService(
             RestauranteRepository restauranteRepository,
             StorageService storageService,
             PostagemRepository postagemRepository,
-            LotacaoRestauranteRepository lotacaoRestauranteRepository) {
+            LotacaoRestauranteRepository lotacaoRestauranteRepository,
+            ComentarioRepository comentarioRepository,
+            CurtidaRepository curtidaRepository
+    ) {
         this.restauranteRepository = restauranteRepository;
         this.storageService = storageService;
         this.postagemRepository = postagemRepository;
         this.lotacaoRestauranteRepository = lotacaoRestauranteRepository;
+        this.comentarioRepository = comentarioRepository;
+        this.curtidaRepository = curtidaRepository;
     }
-
     @Transactional(readOnly = true)
     public List<ResponseRestauranteMapa> listarRestaurantesMapa() {
 
@@ -84,12 +93,35 @@ public class RestauranteService {
                 .toList();
     }
     @Transactional(readOnly = true)
-    public Page<ResponsePostagem> listarPostagensDoRestaurante(UUID restauranteId, Pageable pageable) {
+    public Page<ResponsePostagem> listarPostagensDoRestaurante(
+            UUID restauranteId,
+            Pageable pageable
+    ) {
         if (!restauranteRepository.existsById(restauranteId)) {
             throw new RuntimeException("Restaurante não encontrado");
         }
+        return postagemRepository
+                .findByRestauranteId(restauranteId, pageable)
+                .map(this::montarResponsePostagem);
+    }
 
-        return postagemRepository.findByRestauranteId(restauranteId, pageable).map(ResponsePostagem::new);
+    private ResponsePostagem montarResponsePostagem(Postagem postagem) {
+
+        Long quantidadeComentarios =
+                comentarioRepository.countByPostagemId(postagem.getId());
+
+        List<String> nomesUsuariosCurtiram =
+                curtidaRepository
+                        .findTop2ByPostagemIdOrderByDataCriacaoDesc(postagem.getId())
+                        .stream()
+                        .map(curtida -> curtida.getUsuario().getNome())
+                        .toList();
+
+        return new ResponsePostagem(
+                postagem,
+                quantidadeComentarios,
+                nomesUsuariosCurtiram
+        );
     }
 
     @Transactional
