@@ -5,6 +5,7 @@ import br.com.aquitabom.modules.postagem.StatusPostagem;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -19,10 +20,16 @@ public record ResponsePostagem(
         StatusPostagem status,
         String nomeUsuario,
         String nomeRestaurante,
-        OffsetDateTime dataCriacao
+        OffsetDateTime dataCriacao,
+        Long quantidadeComentarios,
+        List<String> nomesUsuariosCurtiram
 ) {
 
-    public ResponsePostagem(Postagem p) {
+    public ResponsePostagem(
+            Postagem p,
+            Long quantidadeComentarios,
+            List<String> nomesUsuariosCurtiram
+    ) {
         this(
                 p.getId(),
                 p.getUsuario().getId(),
@@ -34,7 +41,9 @@ public record ResponsePostagem(
                 p.getStatus(),
                 p.getUsuario().getNome(),
                 p.getRestaurante().getNome(),
-                p.getDataCriacao()
+                p.getDataCriacao(),
+                quantidadeComentarios,
+                nomesUsuariosCurtiram
         );
     }
 }

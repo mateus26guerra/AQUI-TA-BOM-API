@@ -13,4 +13,5 @@ public interface ComentarioRepository extends JpaRepository<Comentario, UUID> {
 
     long deleteByPostagemId(UUID postagemId);
     long deleteByIdAndUsuarioId(UUID comentarioId, UUID usuarioId);
+    long countByPostagemId(UUID postagemId);
 }
