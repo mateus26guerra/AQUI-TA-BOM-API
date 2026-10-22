@@ -5,6 +5,7 @@ import br.com.aquitabom.core.security.UsuarioAutenticado;
 import br.com.aquitabom.modules.postagem.cto.ResponseCurtida;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.UUID;
 
@@ -76,6 +78,17 @@ public class PostagemController {
     @GetMapping
     public ResponseEntity<List<ResponsePostagem>> listar() {
         return ResponseEntity.ok(postagemService.listarTodas());
+    }
+
+    @GetMapping(value = "/csv", produces = "text/csv")
+    public ResponseEntity<byte[]> exportarCsv() {
+        // BOM UTF-8 para o Excel reconhecer acentuação
+        byte[] csv = ("\uFEFF" + postagemService.exportarCsv()).getBytes(StandardCharsets.UTF_8);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"postagens.csv\"")
+                .contentType(new MediaType("text", "csv", StandardCharsets.UTF_8))
+                .body(csv);
     }
 
     @GetMapping("/minhas")
