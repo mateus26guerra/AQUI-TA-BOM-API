@@ -9,6 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e1158b1c-da72-4f6b-8702-207a585c287e" name="Changes" comment="feat: ajuste metodo de atualizar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/curtida/CurtidaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/curtida/CurtidaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/aquitabom/modules/postagem/PostagemController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,36 +82,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AquiTaBomApplication.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "Maven.aqui-ta-bom-backend [clean].executor": "Run",
-    "Maven.aqui-ta-bom-backend [install].executor": "Run",
-    "Maven.aqui-ta-bom-backend [test].executor": "Run",
-    "Maven.aqui-ta-bom-backend [validate].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.AquiTaBomApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "mateus",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/luucasdinoo/Workstation/ws-intellij/AQUI-TA-BOM-API",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AquiTaBomApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.aqui-ta-bom-backend [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.aqui-ta-bom-backend [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.aqui-ta-bom-backend [test].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.aqui-ta-bom-backend [validate].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AquiTaBomApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;mateus&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/luucasdinoo/Workstation/ws-intellij/AQUI-TA-BOM-API&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.AquiTaBomApplication">
     <configuration name="AquiTaBomApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <envs>

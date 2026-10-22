@@ -52,6 +52,7 @@ public class SecurityConfig {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/v1/api/postagens", "/v1/api/postagens/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/v1/api/csv/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/api/postagens", "/v1/api/postagens/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/v1/api/postagens/**").authenticated()
                         .requestMatchers(ROTAS_PUBLICAS).permitAll()
