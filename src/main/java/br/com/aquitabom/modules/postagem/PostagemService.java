@@ -191,48 +191,6 @@ public class PostagemService {
     }
 
     @Transactional(readOnly = true)
-    public String exportarCsv() {
-
-        StringBuilder csv = new StringBuilder();
-        csv.append("id,usuarioId,titulo,descricao,imagemUrl,likes,nota,status,nomeUsuario,")
-                .append("nomeRestaurante,dataCriacao,quantidadeComentarios,nomesUsuariosCurtiram\n");
-
-        for (ResponsePostagem p : listarTodas()) {
-            csv.append(String.join(",",
-                    escaparCsv(p.id()),
-                    escaparCsv(p.usuarioId()),
-                    escaparCsv(p.titulo()),
-                    escaparCsv(p.descricao()),
-                    escaparCsv(p.imagemUrl()),
-                    escaparCsv(p.likes()),
-                    escaparCsv(p.nota()),
-                    escaparCsv(p.status()),
-                    escaparCsv(p.nomeUsuario()),
-                    escaparCsv(p.nomeRestaurante()),
-                    escaparCsv(p.dataCriacao()),
-                    escaparCsv(p.quantidadeComentarios()),
-                    escaparCsv(String.join("; ", p.nomesUsuariosCurtiram()))
-            )).append("\n");
-        }
-
-        return csv.toString();
-    }
-
-    private String escaparCsv(Object valor) {
-        if (valor == null) {
-            return "";
-        }
-
-        String texto = valor.toString();
-
-        if (texto.contains(",") || texto.contains("\"") || texto.contains("\n") || texto.contains("\r")) {
-            return "\"" + texto.replace("\"", "\"\"") + "\"";
-        }
-
-        return texto;
-    }
-
-    @Transactional(readOnly = true)
     public List<ResponsePostagem> listarMinhasPostagens(
             UsuarioAutenticado principal
     ) {
