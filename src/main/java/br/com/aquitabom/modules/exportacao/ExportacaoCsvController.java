@@ -41,6 +41,11 @@ public class ExportacaoCsvController {
         return respostaCsv(exportacaoCsvService.exportarTodasCurtidas(), "curtidas.csv");
     }
 
+    @GetMapping("/restaurantes")
+    public ResponseEntity<byte[]> exportarRestaurantes() {
+        return respostaCsv(exportacaoCsvService.exportarRestaurantes(), "restaurantes.csv");
+    }
+
     private ResponseEntity<byte[]> respostaCsv(String conteudo, String nomeArquivo) {
         // BOM UTF-8 para o Excel reconhecer acentuação
         byte[] csv = ("﻿" + conteudo).getBytes(StandardCharsets.UTF_8);
