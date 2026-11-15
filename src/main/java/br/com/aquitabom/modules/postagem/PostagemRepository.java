@@ -41,4 +41,7 @@ public interface PostagemRepository extends JpaRepository<Postagem, UUID> {
     @EntityGraph(attributePaths = {"usuario", "restaurante"})
     List<Postagem> findByUsuarioIdOrderByDataCriacaoDesc(UUID usuarioId);
 
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("DELETE FROM Postagem x WHERE x.restaurante.id = :restauranteId")
+    void deleteByRestauranteId(@Param("restauranteId") UUID restauranteId);
 }

@@ -3,9 +3,11 @@ package br.com.aquitabom.modules.restaurante;
 import br.com.aquitabom.core.Storage.StorageService;
 import br.com.aquitabom.modules.LotacaoRestaurante.LotacaoRestaurante;
 import br.com.aquitabom.modules.LotacaoRestaurante.LotacaoRestauranteRepository;
+import br.com.aquitabom.modules.avaliacaolotacao.AvaliacaoLotacaoRepository;
 import br.com.aquitabom.modules.avaliacaolotacao.AvaliacaoLotacaoService;
 import br.com.aquitabom.modules.avaliacaolotacao.StatusLotacao;
 import br.com.aquitabom.modules.avaliacaolotacao.dto.ResponseLotacao;
+import br.com.aquitabom.modules.avaliacaorestaurante.AvaliacaoRestauranteRepository;
 import br.com.aquitabom.modules.comentario.ComentarioRepository;
 import br.com.aquitabom.modules.curtida.CurtidaRepository;
 import br.com.aquitabom.modules.postagem.Postagem;
@@ -35,6 +37,8 @@ public class RestauranteService {
     private final LotacaoRestauranteRepository lotacaoRestauranteRepository;
     private final ComentarioRepository comentarioRepository;
     private final CurtidaRepository curtidaRepository;
+    private final AvaliacaoLotacaoRepository avaliacaoLotacaoRepository;
+    private final AvaliacaoRestauranteRepository avaliacaoRestauranteRepository;
 
     public RestauranteService(
             RestauranteRepository restauranteRepository,
@@ -42,7 +46,9 @@ public class RestauranteService {
             PostagemRepository postagemRepository,
             LotacaoRestauranteRepository lotacaoRestauranteRepository,
             ComentarioRepository comentarioRepository,
-            CurtidaRepository curtidaRepository
+            CurtidaRepository curtidaRepository,
+            AvaliacaoLotacaoRepository avaliacaoLotacaoRepository,
+            AvaliacaoRestauranteRepository avaliacaoRestauranteRepository
     ) {
         this.restauranteRepository = restauranteRepository;
         this.storageService = storageService;
@@ -50,6 +56,8 @@ public class RestauranteService {
         this.lotacaoRestauranteRepository = lotacaoRestauranteRepository;
         this.comentarioRepository = comentarioRepository;
         this.curtidaRepository = curtidaRepository;
+        this.avaliacaoLotacaoRepository = avaliacaoLotacaoRepository;
+        this.avaliacaoRestauranteRepository = avaliacaoRestauranteRepository;
     }
     @Transactional(readOnly = true)
     public List<ResponseRestauranteMapa> listarRestaurantesMapa() {
@@ -159,6 +167,18 @@ public class RestauranteService {
 
     @Transactional
     public void deletarRestaurante(UUID id) {
+        if (!restauranteRepository.existsById(id)) {
+            throw new RuntimeException("Restaurante não encontrado com o ID: " + id);
+        }
+
+        // Remove primeiro os registros que dependem do restaurante (chaves estrangeiras)
+        curtidaRepository.deleteByPostagemRestauranteId(id);
+        comentarioRepository.deleteByPostagemRestauranteId(id);
+        postagemRepository.deleteByRestauranteId(id);
+        lotacaoRestauranteRepository.deleteByRestauranteId(id);
+        avaliacaoLotacaoRepository.deleteByRestauranteId(id);
+        avaliacaoRestauranteRepository.deleteByRestauranteId(id);
+
         restauranteRepository.deleteById(id);
     }
 

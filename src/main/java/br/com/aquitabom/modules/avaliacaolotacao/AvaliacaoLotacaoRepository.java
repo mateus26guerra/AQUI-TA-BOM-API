@@ -1,6 +1,9 @@
 package br.com.aquitabom.modules.avaliacaolotacao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.Modifying;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -19,4 +22,8 @@ public interface AvaliacaoLotacaoRepository
             UUID restauranteId,
             OffsetDateTime data
     );
+
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("DELETE FROM AvaliacaoLotacao x WHERE x.restaurante.id = :restauranteId")
+    void deleteByRestauranteId(@Param("restauranteId") UUID restauranteId);
 }
