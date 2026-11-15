@@ -2,6 +2,9 @@ package br.com.aquitabom.core.config;
 
 import br.com.aquitabom.modules.acesso.Acesso;
 import br.com.aquitabom.modules.acesso.AcessoRepository;
+import br.com.aquitabom.modules.formapagamento.CategoriaPagamento;
+import br.com.aquitabom.modules.formapagamento.FormaPagamento;
+import br.com.aquitabom.modules.formapagamento.FormaPagamentoRepository;
 import br.com.aquitabom.modules.role.Role;
 import br.com.aquitabom.modules.role.RoleRepository;
 import br.com.aquitabom.modules.usuario.Usuario;
@@ -18,15 +21,18 @@ public class DataSeeder implements CommandLineRunner {
     private final RoleRepository roleRepository;
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
+    private final FormaPagamentoRepository formaPagamentoRepository;
 
     public DataSeeder(AcessoRepository acessoRepository,
                       RoleRepository roleRepository,
                       UsuarioRepository usuarioRepository,
-                      PasswordEncoder passwordEncoder) {
+                      PasswordEncoder passwordEncoder,
+                      FormaPagamentoRepository formaPagamentoRepository) {
         this.acessoRepository = acessoRepository;
         this.roleRepository = roleRepository;
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.formaPagamentoRepository = formaPagamentoRepository;
     }
 
     @Override
@@ -73,6 +79,35 @@ public class DataSeeder implements CommandLineRunner {
             admin.adicionarRole(roleAdmin);
             admin.adicionarRole(roleUser);
             usuarioRepository.save(admin);
+        }
+
+        // 5. Criar as Formas de Pagamento aceitas pelos restaurantes
+        criarFormaPagamentoSeNaoExistir("Dinheiro", CategoriaPagamento.DINHEIRO);
+        criarFormaPagamentoSeNaoExistir("Pix", CategoriaPagamento.PIX);
+        criarFormaPagamentoSeNaoExistir("Cartão de Crédito", CategoriaPagamento.CARTAO_CREDITO);
+        criarFormaPagamentoSeNaoExistir("Cartão de Débito", CategoriaPagamento.CARTAO_DEBITO);
+
+        criarFormaPagamentoSeNaoExistir("Alelo Refeição", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("Pluxee Refeição (Sodexo)", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("Ticket Restaurante", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("VR Refeição", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("Ben Refeição", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("Up Refeição", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("VeroCard Refeição", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("Caju", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("Flash", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("iFood Benefícios", CategoriaPagamento.VALE_REFEICAO);
+        criarFormaPagamentoSeNaoExistir("Swile", CategoriaPagamento.VALE_REFEICAO);
+
+        criarFormaPagamentoSeNaoExistir("Alelo Alimentação", CategoriaPagamento.VALE_ALIMENTACAO);
+        criarFormaPagamentoSeNaoExistir("Pluxee Alimentação (Sodexo)", CategoriaPagamento.VALE_ALIMENTACAO);
+        criarFormaPagamentoSeNaoExistir("Ticket Alimentação", CategoriaPagamento.VALE_ALIMENTACAO);
+        criarFormaPagamentoSeNaoExistir("VR Alimentação", CategoriaPagamento.VALE_ALIMENTACAO);
+    }
+
+    private void criarFormaPagamentoSeNaoExistir(String nome, CategoriaPagamento categoria) {
+        if (!formaPagamentoRepository.existsByNome(nome)) {
+            formaPagamentoRepository.save(new FormaPagamento(nome, categoria));
         }
     }
 

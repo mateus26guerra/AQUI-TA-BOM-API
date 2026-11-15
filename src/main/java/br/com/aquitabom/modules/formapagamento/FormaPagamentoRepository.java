@@ -1,0 +1,13 @@
+package br.com.aquitabom.modules.formapagamento;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface FormaPagamentoRepository extends JpaRepository<FormaPagamento, UUID> {
+
+    boolean existsByNome(String nome);
+
+    List<FormaPagamento> findAllByOrderByCategoriaAscNomeAsc();
+}

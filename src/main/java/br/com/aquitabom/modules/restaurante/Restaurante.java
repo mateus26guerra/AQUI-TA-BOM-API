@@ -1,11 +1,19 @@
 package br.com.aquitabom.modules.restaurante;
 
+import br.com.aquitabom.modules.formapagamento.FormaPagamento;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -24,11 +32,21 @@ public class Restaurante {
     private String descricao;
     private String telefone;
     private String URLImagem;
+    private String urlCardapio;
+    private LocalTime horarioAbertura;
+    private LocalTime horarioFechamento;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "tb_restaurante_forma_pagamento",
+            joinColumns = @JoinColumn(name = "restaurante_id"),
+            inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id"))
+    private Set<FormaPagamento> formasPagamento = new HashSet<>();
 
     public Restaurante() {
     }
 
-    public Restaurante(UUID id, String nome, String iniciais, String latitude, String longitude, String endereco, String descricao, String telefone, String URLImagem) {
+    public Restaurante(UUID id, String nome, String iniciais, String latitude, String longitude, String endereco, String descricao, String telefone, String URLImagem, String urlCardapio) {
         this.id = id;
         this.nome = nome;
         this.iniciais = iniciais;
@@ -38,6 +56,7 @@ public class Restaurante {
         this.descricao = descricao;
         this.telefone = telefone;
         this.URLImagem = URLImagem;
+        this.urlCardapio = urlCardapio;
     }
 
     public UUID getId() {
@@ -110,5 +129,37 @@ public class Restaurante {
 
     public void setURLImagem(String URLImagem) {
         this.URLImagem = URLImagem;
+    }
+
+    public String getUrlCardapio() {
+        return urlCardapio;
+    }
+
+    public void setUrlCardapio(String urlCardapio) {
+        this.urlCardapio = urlCardapio;
+    }
+
+    public LocalTime getHorarioAbertura() {
+        return horarioAbertura;
+    }
+
+    public void setHorarioAbertura(LocalTime horarioAbertura) {
+        this.horarioAbertura = horarioAbertura;
+    }
+
+    public LocalTime getHorarioFechamento() {
+        return horarioFechamento;
+    }
+
+    public void setHorarioFechamento(LocalTime horarioFechamento) {
+        this.horarioFechamento = horarioFechamento;
+    }
+
+    public Set<FormaPagamento> getFormasPagamento() {
+        return formasPagamento;
+    }
+
+    public void setFormasPagamento(Set<FormaPagamento> formasPagamento) {
+        this.formasPagamento = formasPagamento;
     }
 }
