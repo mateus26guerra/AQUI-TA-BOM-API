@@ -22,13 +22,24 @@ public record ResponsePostagem(
         String nomeRestaurante,
         OffsetDateTime dataCriacao,
         Long quantidadeComentarios,
-        List<String> nomesUsuariosCurtiram
+        List<String> nomesUsuariosCurtiram,
+        // Só vem preenchido no feed recomendado
+        Boolean recomendada
 ) {
 
     public ResponsePostagem(
             Postagem p,
             Long quantidadeComentarios,
             List<String> nomesUsuariosCurtiram
+    ) {
+        this(p, quantidadeComentarios, nomesUsuariosCurtiram, null);
+    }
+
+    public ResponsePostagem(
+            Postagem p,
+            Long quantidadeComentarios,
+            List<String> nomesUsuariosCurtiram,
+            Boolean recomendada
     ) {
         this(
                 p.getId(),
@@ -43,7 +54,8 @@ public record ResponsePostagem(
                 p.getRestaurante().getNome(),
                 p.getDataCriacao(),
                 quantidadeComentarios,
-                nomesUsuariosCurtiram
+                nomesUsuariosCurtiram,
+                recomendada
         );
     }
 }
