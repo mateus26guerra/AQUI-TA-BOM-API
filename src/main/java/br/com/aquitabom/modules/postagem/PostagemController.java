@@ -78,6 +78,19 @@ public class PostagemController {
         return ResponseEntity.ok(postagemService.listarTodas());
     }
 
+    @GetMapping("/recomendadas")
+    @SecurityRequirement(name = "bearer-jwt")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<List<ResponsePostagem>> listarRecomendadas(
+            @AuthenticationPrincipal UsuarioAutenticado principal
+    ) {
+        if (principal == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado");
+        }
+
+        return ResponseEntity.ok(postagemService.listarRecomendadas(principal));
+    }
+
     @GetMapping("/minhas")
     @SecurityRequirement(name = "bearer-jwt")
     @PreAuthorize("isAuthenticated()")

@@ -7,6 +7,7 @@ import br.com.aquitabom.modules.curtida.Curtida;
 import br.com.aquitabom.modules.curtida.CurtidaRepository;
 import br.com.aquitabom.modules.postagem.cto.ResponseCurtida;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
+import br.com.aquitabom.modules.recomendacao.RecomendacaoClient;
 import br.com.aquitabom.modules.restaurante.Restaurante;
 import br.com.aquitabom.modules.restaurante.RestauranteRepository;
 import br.com.aquitabom.modules.usuario.Usuario;
@@ -15,8 +16,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class PostagemService {
@@ -27,6 +34,13 @@ public class PostagemService {
     private final CurtidaRepository curtidaRepository;
     private final ComentarioRepository comentarioRepository;
     private final StorageService storageService;
+    private final RecomendacaoClient recomendacaoClient;
+
+    // Limites para a chamada ao serviço de NLP não ficar pesada
+    private static final int MAX_CURTIDAS_NO_PERFIL = 20;
+    private static final int MAX_CANDIDATAS = 200;
+    // Quantas das primeiras recomendadas ganham o selo "Recomendado pra você" no app
+    private static final int QTD_COM_SELO = 3;
 
     public PostagemService(
             PostagemRepository postagemRepository,
@@ -34,7 +48,8 @@ public class PostagemService {
             RestauranteRepository restauranteRepository,
             CurtidaRepository curtidaRepository,
             ComentarioRepository comentarioRepository,
-            StorageService storageService
+            StorageService storageService,
+            RecomendacaoClient recomendacaoClient
     ) {
         this.postagemRepository = postagemRepository;
         this.usuarioRepository = usuarioRepository;
@@ -42,10 +57,15 @@ public class PostagemService {
         this.curtidaRepository = curtidaRepository;
         this.comentarioRepository = comentarioRepository;
         this.storageService = storageService;
+        this.recomendacaoClient = recomendacaoClient;
     }
 
 
     private ResponsePostagem montarResponsePostagem(Postagem postagem) {
+        return montarResponsePostagem(postagem, null);
+    }
+
+    private ResponsePostagem montarResponsePostagem(Postagem postagem, Boolean recomendada) {
 
         Long quantidadeComentarios =
                 comentarioRepository.countByPostagemId(postagem.getId());
@@ -60,7 +80,8 @@ public class PostagemService {
         return new ResponsePostagem(
                 postagem,
                 quantidadeComentarios,
-                nomesUsuariosCurtiram
+                nomesUsuariosCurtiram,
+                recomendada
         );
     }
 
@@ -178,6 +199,76 @@ public class PostagemService {
         postagemRepository.save(postagem);
 
         return montarResponsePostagem(postagem);
+    }
+
+    /**
+     * Feed personalizado: as postagens que o usuário ainda não curtiu (e que não são dele) vêm primeiro,
+     * ordenadas pela semelhança com o que ele já curtiu. Depois vem o resto do feed, do mais novo ao mais antigo.
+     * Se ele ainda não curtiu nada, ou se o serviço de recomendação falhar, devolve o feed na ordem normal.
+     */
+    @Transactional(readOnly = true)
+    public List<ResponsePostagem> listarRecomendadas(UsuarioAutenticado principal) {
+        List<Postagem> feed = postagemRepository.findAllByOrderByDataCriacaoDesc();
+
+        List<Postagem> curtidas = curtidaRepository.findByUsuarioIdOrderByDataCriacaoDesc(principal.id())
+                .stream()
+                .map(Curtida::getPostagem)
+                .toList();
+        if (curtidas.isEmpty()) {
+            return feed.stream().map(this::montarResponsePostagem).toList();
+        }
+
+        Set<UUID> idsCurtidos = curtidas.stream().map(Postagem::getId).collect(Collectors.toSet());
+        List<Postagem> candidatas = feed.stream()
+                .filter(p -> !idsCurtidos.contains(p.getId()))
+                .filter(p -> !p.getUsuario().getId().equals(principal.id()))
+                .limit(MAX_CANDIDATAS)
+                .toList();
+        if (candidatas.isEmpty()) {
+            return feed.stream().map(this::montarResponsePostagem).toList();
+        }
+
+        List<String> perfil = curtidas.stream()
+                .limit(MAX_CURTIDAS_NO_PERFIL)
+                .map(PostagemService::textoParaRecomendacao)
+                .toList();
+        List<RecomendacaoClient.Candidata> pedido = candidatas.stream()
+                .map(p -> new RecomendacaoClient.Candidata(p.getId().toString(), textoParaRecomendacao(p)))
+                .toList();
+
+        List<String> ordem = recomendacaoClient.ordenar(perfil, pedido).orElse(null);
+        if (ordem == null) {
+            return feed.stream().map(this::montarResponsePostagem).toList();
+        }
+
+        // Reordena seguindo a resposta do serviço (a ordem do banco não é confiável para isso)
+        Map<String, Postagem> porId = candidatas.stream()
+                .collect(Collectors.toMap(p -> p.getId().toString(), Function.identity()));
+        List<ResponsePostagem> resultado = new ArrayList<>();
+        Set<UUID> jaIncluidas = new HashSet<>();
+        for (String id : ordem) {
+            Postagem p = porId.get(id);
+            if (p != null && jaIncluidas.add(p.getId())) {
+                boolean selo = resultado.size() < QTD_COM_SELO;
+                resultado.add(montarResponsePostagem(p, selo));
+            }
+        }
+        for (Postagem p : feed) {
+            if (jaIncluidas.add(p.getId())) {
+                resultado.add(montarResponsePostagem(p));
+            }
+        }
+        return resultado;
+    }
+
+    // Formato de texto sugerido pelo serviço: título, descrição e restaurante
+    private static String textoParaRecomendacao(Postagem p) {
+        StringBuilder texto = new StringBuilder("Titulo: ").append(p.getTitulo()).append('.');
+        if (p.getDescricao() != null && !p.getDescricao().isBlank()) {
+            texto.append(" Descricao: ").append(p.getDescricao().trim()).append('.');
+        }
+        texto.append(" Restaurante: ").append(p.getRestaurante().getNome()).append('.');
+        return texto.toString();
     }
 
     @Transactional(readOnly = true)
