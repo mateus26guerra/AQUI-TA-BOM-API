@@ -10,6 +10,10 @@ import br.com.aquitabom.modules.avaliacaolotacao.dto.ResponseLotacao;
 import br.com.aquitabom.modules.avaliacaorestaurante.AvaliacaoRestauranteRepository;
 import br.com.aquitabom.modules.comentario.ComentarioRepository;
 import br.com.aquitabom.modules.curtida.CurtidaRepository;
+import br.com.aquitabom.modules.formapagamento.CategoriaPagamento;
+import br.com.aquitabom.modules.formapagamento.FormaPagamento;
+import br.com.aquitabom.modules.formapagamento.FormaPagamentoRepository;
+import br.com.aquitabom.modules.formapagamento.dto.ResponseFormaPagamento;
 import br.com.aquitabom.modules.postagem.Postagem;
 import br.com.aquitabom.modules.postagem.PostagemRepository;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
@@ -24,7 +28,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.OffsetDateTime;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -39,6 +46,7 @@ public class RestauranteService {
     private final CurtidaRepository curtidaRepository;
     private final AvaliacaoLotacaoRepository avaliacaoLotacaoRepository;
     private final AvaliacaoRestauranteRepository avaliacaoRestauranteRepository;
+    private final FormaPagamentoRepository formaPagamentoRepository;
 
     public RestauranteService(
             RestauranteRepository restauranteRepository,
@@ -48,7 +56,8 @@ public class RestauranteService {
             ComentarioRepository comentarioRepository,
             CurtidaRepository curtidaRepository,
             AvaliacaoLotacaoRepository avaliacaoLotacaoRepository,
-            AvaliacaoRestauranteRepository avaliacaoRestauranteRepository
+            AvaliacaoRestauranteRepository avaliacaoRestauranteRepository,
+            FormaPagamentoRepository formaPagamentoRepository
     ) {
         this.restauranteRepository = restauranteRepository;
         this.storageService = storageService;
@@ -58,11 +67,18 @@ public class RestauranteService {
         this.curtidaRepository = curtidaRepository;
         this.avaliacaoLotacaoRepository = avaliacaoLotacaoRepository;
         this.avaliacaoRestauranteRepository = avaliacaoRestauranteRepository;
+        this.formaPagamentoRepository = formaPagamentoRepository;
     }
     @Transactional(readOnly = true)
-    public List<ResponseRestauranteMapa> listarRestaurantesMapa() {
+    public List<ResponseRestauranteMapa> listarRestaurantesMapa(
+            List<UUID> formasPagamentoIds,
+            CategoriaPagamento categoria
+    ) {
 
-        var restaurantes = restauranteRepository.findAll();
+        var restaurantes = restauranteRepository.findAllComFormasPagamento()
+                .stream()
+                .filter(restaurante -> aceitaFormaPagamento(restaurante, formasPagamentoIds, categoria))
+                .toList();
 
         var lotacoes = lotacaoRestauranteRepository.findAll()
                 .stream()
@@ -95,7 +111,14 @@ public class RestauranteService {
                             restaurante.getLongitude(),
                             restaurante.getEndereco(),
                             restaurante.getURLImagem(),
-                            statusLotacao
+                            restaurante.getUrlCardapio(),
+                            restaurante.getHorarioAbertura(),
+                            restaurante.getHorarioFechamento(),
+                            statusLotacao,
+                            restaurante.getFormasPagamento().stream()
+                                    .map(ResponseFormaPagamento::new)
+                                    .sorted(Comparator.comparing(ResponseFormaPagamento::nome))
+                                    .toList()
                     );
                 })
                 .toList();
@@ -155,6 +178,10 @@ public class RestauranteService {
         restauranteNovo.setDescricao(dto.descricao());
         restauranteNovo.setTelefone(dto.telefone());
         restauranteNovo.setURLImagem(urlImagem);
+        restauranteNovo.setUrlCardapio(dto.urlCardapio());
+        restauranteNovo.setHorarioAbertura(dto.horarioAbertura());
+        restauranteNovo.setHorarioFechamento(dto.horarioFechamento());
+        restauranteNovo.setFormasPagamento(buscarFormasPagamento(dto.formasPagamentoIds()));
 
         // Salva a Entidade no banco
         restauranteRepository.save(restauranteNovo);
@@ -162,7 +189,53 @@ public class RestauranteService {
 
     @Transactional(readOnly = true)
     public List<ResponseRestaurante> listarRestaurantes() {
-        return restauranteRepository.findAll().stream().map(ResponseRestaurante::new).toList();
+        return listarRestaurantes(null, null);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ResponseRestaurante> listarRestaurantes(
+            List<UUID> formasPagamentoIds,
+            CategoriaPagamento categoria
+    ) {
+        return restauranteRepository.findAllComFormasPagamento()
+                .stream()
+                .filter(restaurante -> aceitaFormaPagamento(restaurante, formasPagamentoIds, categoria))
+                .map(ResponseRestaurante::new)
+                .toList();
+    }
+
+    // O restaurante passa no filtro se aceitar pelo menos uma das formas de pagamento informadas
+    // (e, se a categoria for informada, essa forma também precisa ser da categoria)
+    private boolean aceitaFormaPagamento(
+            Restaurante restaurante,
+            List<UUID> formasPagamentoIds,
+            CategoriaPagamento categoria
+    ) {
+        boolean filtrarPorIds = formasPagamentoIds != null && !formasPagamentoIds.isEmpty();
+
+        if (!filtrarPorIds && categoria == null) {
+            return true;
+        }
+
+        return restaurante.getFormasPagamento().stream().anyMatch(forma ->
+                (!filtrarPorIds || formasPagamentoIds.contains(forma.getId()))
+                        && (categoria == null || forma.getCategoria() == categoria)
+        );
+    }
+
+    private Set<FormaPagamento> buscarFormasPagamento(List<UUID> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return new HashSet<>();
+        }
+
+        Set<UUID> idsUnicos = new HashSet<>(ids);
+        List<FormaPagamento> formasPagamento = formaPagamentoRepository.findAllById(idsUnicos);
+
+        if (formasPagamento.size() != idsUnicos.size()) {
+            throw new IllegalArgumentException("Uma ou mais formas de pagamento informadas não existem");
+        }
+
+        return new HashSet<>(formasPagamento);
     }
 
     @Transactional
@@ -206,6 +279,10 @@ public class RestauranteService {
         restauranteAtualizado.setLatitude(dto.latitude());
         restauranteAtualizado.setLongitude(dto.longitude());
         restauranteAtualizado.setDescricao(dto.descricao());
+        restauranteAtualizado.setUrlCardapio(dto.urlCardapio());
+        restauranteAtualizado.setHorarioAbertura(dto.horarioAbertura());
+        restauranteAtualizado.setHorarioFechamento(dto.horarioFechamento());
+        restauranteAtualizado.setFormasPagamento(buscarFormasPagamento(dto.formasPagamentoIds()));
 
         restauranteRepository.save(restauranteAtualizado);
     }

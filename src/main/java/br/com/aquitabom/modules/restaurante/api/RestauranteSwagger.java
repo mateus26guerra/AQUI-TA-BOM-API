@@ -1,5 +1,6 @@
 package br.com.aquitabom.modules.restaurante.api;
 
+import br.com.aquitabom.modules.formapagamento.CategoriaPagamento;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import br.com.aquitabom.modules.restaurante.Restaurante;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
@@ -35,12 +36,17 @@ public interface RestauranteSwagger {
     })
     ResponseEntity<Void> salvarRestaurante(@RequestBody @Valid RequestRestaurante restaurante);
 
-    @Operation(summary = "Listar restaurantes", description = "Retorna uma lista com todos os restaurantes cadastrados.")
+    @Operation(summary = "Listar restaurantes", description = "Retorna os restaurantes cadastrados. Pode filtrar pelas formas de pagamento aceitas (basta aceitar uma delas) e/ou pela categoria de pagamento.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista retornada com sucesso"),
             @ApiResponse(responseCode = "401", description = "Não autorizado")
     })
-    ResponseEntity<List<ResponseRestaurante>> listarRestaurantes();
+    ResponseEntity<List<ResponseRestaurante>> listarRestaurantes(
+            @Parameter(description = "IDs das formas de pagamento. Repita o parâmetro para mais de uma: ?formasPagamentoIds=id1&formasPagamentoIds=id2")
+            List<UUID> formasPagamentoIds,
+            @Parameter(description = "Categoria de pagamento", example = "VALE_REFEICAO")
+            CategoriaPagamento categoria
+    );
 
     @Operation(summary = "Remover restaurante", description = "Exclui um restaurante existente pelo seu ID.")
     @ApiResponses({

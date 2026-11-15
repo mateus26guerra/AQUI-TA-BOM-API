@@ -1,5 +1,6 @@
 package br.com.aquitabom.modules.restaurante;
 
+import br.com.aquitabom.modules.formapagamento.CategoriaPagamento;
 import br.com.aquitabom.modules.postagem.cto.ResponsePostagem;
 import br.com.aquitabom.modules.restaurante.api.RestauranteSwagger;
 import br.com.aquitabom.modules.restaurante.dto.Request.RequestAtualizarRestaurante;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -39,10 +41,13 @@ public class RestauranteController implements RestauranteSwagger {
     }
 
     @GetMapping("/mapa")
-    public ResponseEntity<List<ResponseRestauranteMapa>> listarRestaurantesMapa() {
+    public ResponseEntity<List<ResponseRestauranteMapa>> listarRestaurantesMapa(
+            @RequestParam(required = false) List<UUID> formasPagamentoIds,
+            @RequestParam(required = false) CategoriaPagamento categoria
+    ) {
 
         return ResponseEntity.ok(
-                restauranteService.listarRestaurantesMapa()
+                restauranteService.listarRestaurantesMapa(formasPagamentoIds, categoria)
         );
     }
 
@@ -55,8 +60,11 @@ public class RestauranteController implements RestauranteSwagger {
 
     @Override
     @GetMapping
-    public ResponseEntity<List<ResponseRestaurante>> listarRestaurantes() {
-        List<ResponseRestaurante> restaurantes = restauranteService.listarRestaurantes();
+    public ResponseEntity<List<ResponseRestaurante>> listarRestaurantes(
+            @RequestParam(required = false) List<UUID> formasPagamentoIds,
+            @RequestParam(required = false) CategoriaPagamento categoria
+    ) {
+        List<ResponseRestaurante> restaurantes = restauranteService.listarRestaurantes(formasPagamentoIds, categoria);
         return ResponseEntity.ok(restaurantes);
     }
 
