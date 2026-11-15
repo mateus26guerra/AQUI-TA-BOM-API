@@ -2,6 +2,7 @@ package br.com.aquitabom.modules.auth;
 
 import br.com.aquitabom.core.security.UsuarioAutenticado;
 import br.com.aquitabom.modules.auth.api.AuthOpenApi;
+import br.com.aquitabom.modules.auth.dto.AtualizarNomeRequest;
 import br.com.aquitabom.modules.auth.dto.AutenticacaoResponse;
 import br.com.aquitabom.modules.auth.dto.GoogleLoginRequest;
 import br.com.aquitabom.modules.auth.dto.LoginRequest;
@@ -15,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,5 +71,16 @@ public class AuthController implements AuthOpenApi {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado");
         }
         return authService.dadosUsuario(principal.id());
+    }
+
+    @Override
+    @PatchMapping("/me")
+    @PreAuthorize("isAuthenticated()")
+    public UsuarioResponse atualizarNome(@AuthenticationPrincipal UsuarioAutenticado principal,
+                                         @RequestBody @Valid AtualizarNomeRequest request) {
+        if (principal == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado");
+        }
+        return authService.atualizarNome(principal.id(), request);
     }
 }

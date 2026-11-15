@@ -1,6 +1,7 @@
 package br.com.aquitabom.modules.auth.api;
 
 import br.com.aquitabom.core.security.UsuarioAutenticado;
+import br.com.aquitabom.modules.auth.dto.AtualizarNomeRequest;
 import br.com.aquitabom.modules.auth.dto.AutenticacaoResponse;
 import br.com.aquitabom.modules.auth.dto.GoogleLoginRequest;
 import br.com.aquitabom.modules.auth.dto.LoginRequest;
@@ -63,4 +64,13 @@ public interface AuthOpenApi {
             @ApiResponse(responseCode = "401", description = "Token ausente, inválido ou expirado")
     })
     UsuarioResponse me(UsuarioAutenticado principal);
+
+    @Operation(summary = "Alterar nome", description = "Altera o nome do usuário dono do token JWT enviado.")
+    @SecurityRequirement(name = "bearer-jwt")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Nome alterado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Nome inválido (mínimo 3 caracteres)"),
+            @ApiResponse(responseCode = "401", description = "Token ausente, inválido ou expirado")
+    })
+    UsuarioResponse atualizarNome(UsuarioAutenticado principal, @RequestBody @Valid AtualizarNomeRequest request);
 }
