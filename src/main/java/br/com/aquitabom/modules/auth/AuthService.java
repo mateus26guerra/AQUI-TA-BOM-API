@@ -3,6 +3,7 @@ package br.com.aquitabom.modules.auth;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.aquitabom.modules.auth.dto.AtualizarNomeRequest;
 import br.com.aquitabom.modules.auth.dto.AutenticacaoResponse;
 import br.com.aquitabom.modules.auth.dto.GoogleLoginRequest;
 import br.com.aquitabom.modules.auth.dto.LoginRequest;
@@ -123,6 +124,14 @@ public class AuthService {
     public UsuarioResponse dadosUsuario(UUID id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Usuário do token não existe mais"));
+        return construirResposta(usuario);
+    }
+
+    @Transactional
+    public UsuarioResponse atualizarNome(UUID id, AtualizarNomeRequest request) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Usuário do token não existe mais"));
+        usuario.setNome(request.nome().trim());
         return construirResposta(usuario);
     }
 
