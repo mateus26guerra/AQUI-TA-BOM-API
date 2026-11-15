@@ -2,7 +2,9 @@ package br.com.aquitabom.modules.auth.api;
 
 import br.com.aquitabom.core.security.UsuarioAutenticado;
 import br.com.aquitabom.modules.auth.dto.AutenticacaoResponse;
+import br.com.aquitabom.modules.auth.dto.GoogleLoginRequest;
 import br.com.aquitabom.modules.auth.dto.LoginRequest;
+import br.com.aquitabom.modules.auth.dto.RefreshTokenRequest;
 import br.com.aquitabom.modules.auth.dto.RegistroRequest;
 import br.com.aquitabom.modules.auth.dto.UsuarioResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,6 +34,27 @@ public interface AuthOpenApi {
             @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     })
     AutenticacaoResponse login(@RequestBody @Valid LoginRequest request);
+
+    @Operation(summary = "Entrar com Google", description = "Recebe o ID token do Google (gerado no app), valida e retorna os tokens. Cria a conta se o e-mail ainda não existir. Rota pública.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Autenticado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Dados inválidos"),
+            @ApiResponse(responseCode = "401", description = "Token do Google inválido")
+    })
+    AutenticacaoResponse loginComGoogle(@RequestBody @Valid GoogleLoginRequest request);
+
+    @Operation(summary = "Renovar token", description = "Troca um refresh token válido por um novo access token e um novo refresh token. O refresh token usado deixa de valer. Rota pública.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Tokens renovados"),
+            @ApiResponse(responseCode = "401", description = "Refresh token inválido ou expirado")
+    })
+    AutenticacaoResponse renovarToken(@RequestBody @Valid RefreshTokenRequest request);
+
+    @Operation(summary = "Sair", description = "Invalida o refresh token informado. Rota pública.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Sessão encerrada")
+    })
+    ResponseEntity<Void> logout(@RequestBody @Valid RefreshTokenRequest request);
 
     @Operation(summary = "Dados do usuário autenticado", description = "Retorna os dados do usuário dono do token JWT enviado.")
     @SecurityRequirement(name = "bearer-jwt")

@@ -3,7 +3,9 @@ package br.com.aquitabom.modules.auth;
 import br.com.aquitabom.core.security.UsuarioAutenticado;
 import br.com.aquitabom.modules.auth.api.AuthOpenApi;
 import br.com.aquitabom.modules.auth.dto.AutenticacaoResponse;
+import br.com.aquitabom.modules.auth.dto.GoogleLoginRequest;
 import br.com.aquitabom.modules.auth.dto.LoginRequest;
+import br.com.aquitabom.modules.auth.dto.RefreshTokenRequest;
 import br.com.aquitabom.modules.auth.dto.RegistroRequest;
 import br.com.aquitabom.modules.auth.dto.UsuarioResponse;
 import jakarta.validation.Valid;
@@ -38,6 +40,25 @@ public class AuthController implements AuthOpenApi {
     @PostMapping("/login")
     public AutenticacaoResponse login(@RequestBody @Valid LoginRequest request) {
         return authService.login(request);
+    }
+
+    @Override
+    @PostMapping("/google")
+    public AutenticacaoResponse loginComGoogle(@RequestBody @Valid GoogleLoginRequest request) {
+        return authService.loginComGoogle(request);
+    }
+
+    @Override
+    @PostMapping("/refresh")
+    public AutenticacaoResponse renovarToken(@RequestBody @Valid RefreshTokenRequest request) {
+        return authService.renovarToken(request);
+    }
+
+    @Override
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@RequestBody @Valid RefreshTokenRequest request) {
+        authService.logout(request);
+        return ResponseEntity.noContent().build();
     }
 
     @Override

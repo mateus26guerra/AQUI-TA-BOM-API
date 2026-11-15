@@ -36,6 +36,9 @@ public class SecurityConfig {
     private static final String[] ROTAS_PUBLICAS = {
             "/v1/api/auth/register",
             "/v1/api/auth/login",
+            "/v1/api/auth/google",
+            "/v1/api/auth/refresh",
+            "/v1/api/auth/logout",
             "/error",
             "/swagger-ui.html",
             "/swagger-ui/**",
